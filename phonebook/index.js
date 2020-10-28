@@ -60,7 +60,9 @@ let persons = [
     if (person) {
         response.json(person)
       } else {
-        response.status(404).end()
+        response.status(404).json({
+            error: '404, content missing'
+        })
       }
   })
 
