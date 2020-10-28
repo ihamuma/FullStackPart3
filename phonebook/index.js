@@ -67,9 +67,11 @@ let persons = [
   })
 
   app.delete('api/persons/:id', (request, response) => {
-      const id = Number(request.params.id)
-      persons = persons.filter(person => person.id !== id)
-      response.status(204).end
+    const id = Number(request.params.id)
+    console.log('persons', persons)
+    persons = persons.filter(person => person.id !== id)
+    console.log('filtered', persons)
+    response.status(204).end()
   })
 
   const generateId = () => {
@@ -80,25 +82,19 @@ let persons = [
   }
 
   app.post('/api/persons', (request, response) => {
-
     const body = request.body
-
-    if (!body.content) {
+    if (!body.name || !body.number) {
         return response.status(400).json({
             error: 'content missing'
         })
     }
-
     const person = {
-        content: body.content,
-        important: body.important || false,
-        date: new Date(),
+        name: body.name,
+        number: body.number,
         id: generateId(),
       }
-
     persons = persons.concat(person)
     response.json(person)
-
   })
 
   const PORT = 3001
