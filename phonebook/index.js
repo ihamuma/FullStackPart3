@@ -41,10 +41,6 @@ let persons = [
       }
     ]
 
-  app.get('/', (request, response) => {
-    response.send('<h1>Hello World!</h1>')
-  })
-
   app.get('/info', (request, response) => {
       response.send(`<p>Phonebook has info for ${persons.length} people</p>
       <p>${new Date()}</p>`)
@@ -71,7 +67,9 @@ let persons = [
     console.log('persons', persons)
     persons = persons.filter(person => person.id !== id)
     console.log('filtered', persons)
-    response.status(204).end()
+    response.status(400).json({
+        error: 'content missing'
+    })
   })
 
   const generateId = () => {
