@@ -4,7 +4,13 @@
   "description": "Backend for MOOC course FullStack Open Phonebook",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "\"echo \\\\\\\"Error: no test specified\\\\\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ihamuma/FullStackPart3.git"
   },
   "author": "Markus Ihamuotila",
   "license": "MIT",
