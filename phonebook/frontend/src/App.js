@@ -75,7 +75,7 @@ const App = () => {
   const handleDelete = ( id, name ) => {
     if (window.confirm(`Delete ${name}?`)) {
         personService.remove(id)
-        .then(response => {
+        .then(() => {
           setPersons(persons.filter(p => p.id !== id))
           setMessage([`Deletion successful`, 'message'])
           setTimeout(() => {
