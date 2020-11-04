@@ -55,6 +55,12 @@ const App = () => {
           setMessage([null, 'message'])
         }, 3000)
       })
+      .catch(() => {
+        setMessage(['Please enter a valid name and number.', 'error'])
+        setTimeout(() => {
+          setMessage([null, 'error'])
+        }, 3000)
+      })
     }
     setNewName('')
     setNewNumber('')
