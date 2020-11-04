@@ -72,7 +72,6 @@ let persons = [
   })
 
   app.delete('/api/persons/:id', (request, response) => {
-    console.log('delete params', request.params)
     const id = Number(request.params.id)
     if (persons.some(p => p.id === id)) {
       persons = persons.filter(person => person.id !== id)
