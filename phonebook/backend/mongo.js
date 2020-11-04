@@ -25,7 +25,14 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFind
 const personSchema = new mongoose.Schema({
   name: String,
   number: String,
-  id: Number,
+})
+
+personSchema.set('toJSON', {
+    transform: (document, returnedObject) => {
+        returnedObject.id = returnedObject._id.toString()
+        delete returnedObject._id
+        delete returnedObject.__v
+    }
 })
 
 const Person = mongoose.model('Person', personSchema)
@@ -43,15 +50,9 @@ if (process.argv.length == 3) {
 
 if (process.argv.length == 5 ) {
 
-    const generateId = () => {
-        const id = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
-        return id
-      }
-
     const person = new Person({
         name: process.argv[3],
         number: process.argv[4],
-        id: generateId()
         })
     
         person.save().then(result => {
